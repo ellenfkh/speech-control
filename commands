@@ -1,0 +1,25 @@
+lexicon = 
+  heat, poke, red, sit, yam, gawk, lag, tim, doop, back
+
+Normal state
+  Back - return to normal state
+  Tim - change focus
+  Yam - windows
+    Tim - minimize
+    Doop - unminimize
+    Gawk - snap right
+    Sit - snap left
+  Poke - launch
+    heat - firefox
+    gawk - terminal
+  Doop - type a key
+    Yam - press f
+    Red - press 0
+    Tim - press 1
+    Sit - press 2
+    Lag - press enter
+  Red - Close current thing
+  Gawk - no-op
+  Heat - no-op
+  Sit - no-op
+  Lag - no-op
