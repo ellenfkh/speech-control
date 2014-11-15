@@ -110,7 +110,6 @@ function launchiTunes()
     application.launchorfocus("iTunes")
 end
 
-<<<<<<< HEAD
 function doCommand(comm)
     i = math.floor(tonumber(comm))
 
@@ -126,9 +125,6 @@ function moveMouseLeft()
 	ypos = point.y
 	cursor.warptopoint(xpos,ypos)
 end
-
-=======
->>>>>>> 278ad35c2c468c23fc77acf5c2ea4fe64b2d51d4
 
 hotkey.bind({"ctrl"}, "r", mjolnir.reload)
 hotkey.bind({"ctrl"}, "f", changeFocus)
@@ -149,8 +145,6 @@ hotkey.bind({"ctrl"}, "b", itunes.previous)
 
 hotkey.bind({"cmd", "alt", "ctrl"}, "D", frameChange)
 
-<<<<<<< HEAD
-=======
 --[[
 -- put if/elses in these, possibly calls to other functions?  in order to do
 -- states and/or composed commands, everything should be routed through these
@@ -256,4 +250,4 @@ hotkey.bind({"ctrl", "shift"}, "6", shift6)
 hotkey.bind({"ctrl", "shift"}, "7", shift7)
 hotkey.bind({"ctrl", "shift"}, "8", shift8)
 hotkey.bind({"ctrl", "shift"}, "9", shift9)
->>>>>>> 278ad35c2c468c23fc77acf5c2ea4fe64b2d51d4
+
