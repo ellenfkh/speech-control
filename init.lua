@@ -252,8 +252,10 @@ function ctrl2()
     	launchChrome()
         print("In state LAUNCHING")
     elseif (state == 3) then
-    	--nop
         print("In state BROWSER")
+        launchChrome()
+        os.execute("osascript openLinks.scpt")
+
     else
         print("Illegal state")
     end
