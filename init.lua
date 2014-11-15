@@ -312,8 +312,8 @@ function ctrl5()
         print("In state LAUNCHING")
         --launchTerminal()
     elseif (state == 3) then
-    	--nop
         print("In state BROWSER")
+        os.execute("osascript newTab.scpt")
     else
         print("Illegal state")
     end
@@ -369,7 +369,7 @@ function ctrl8()
     	--nop
         print("In state LAUNCHING")
     elseif (state == 3) then
-    	--nop
+        os.execute("osascript nextTab.scpt")
         print("In state BROWSER")
     else
         print("Illegal state")
