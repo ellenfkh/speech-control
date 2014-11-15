@@ -1,5 +1,6 @@
 package.path = package.path .. ";/Users/silver/dev/homebrew/Cellar/luarocks/2.2.0_1/share/lua/5.2/?.lua"
 package.cpath = package.cpath .. ";/Users/silver/dev/homebrew/Cellar/luarocks/2.2.0_1/share/lua/5.2/?.so"
+package.path = package.path .. ";/Users/silver/dev/homebrew/Cellar/luarocks/2.2.0_1/share/lua/5.2/?/init.lua"
 package.path = package.path .. ";/Users/silver/dev/homebrew/lib/lua/5.2/?.lua"
 package.cpath = package.cpath .. ";/Users/silver/dev/homebrew/lib/lua/5.2/?.so"
 
@@ -13,10 +14,17 @@ local itunes = require "mjolnir.lb.itunes"
 local screen = require "mjolnir.screen"
 local cursor = require "mjolnir.jstevenson.cursor"
 local alert = require "mjolnir.alert"
+local scripting = require("mjolnir._asm.hydra.applescript")
 
 local mode = 0
 
 local curFocus = window.focusedwindow()
+
+function fixNilCurFocus()
+    if curFocus == nil then
+        curFocus = window.focusedwindow()
+    end
+end
 
 -- move window 10 spaces
 function move10 ()
@@ -41,6 +49,7 @@ local wins = window.visiblewindows()
 
 -- change window focus
 function changeFocus()
+    fixNilCurFocus()
 	curFocus:focus()
     head = table.remove(wins,1)
     print(head:id())
@@ -53,6 +62,7 @@ end
 
 -- minimize the window in focus
 function minWindow()
+    fixNilCurFocus()
 	curFocus:focus()
     local win = window.focusedwindow()
     if (win == nil) then
@@ -63,6 +73,7 @@ end
 
 -- unminimize a window. if you care which window, TOO FUCKING BAD
 function unMinWindow()
+    fixNilCurFocus()
 	curFocus:focus()
     for i, wn in pairs(window.allwindows()) do
         if (wn:isminimized()) then
@@ -79,6 +90,7 @@ end
 
 -- set focused window to the left half of the screen
 function makeRightHalf( )
+    fixNilCurFocus()
 	curFocus:focus()
 	local win = window.focusedwindow()
 	if (win == nil) then
@@ -101,6 +113,7 @@ end
 
 -- set focused window to the right half of the screen
 function makeLeftHalf( )
+    fixNilCurFocus()
 	curFocus:focus()
 	local win = window.focusedwindow()
         if (win == nil) then
@@ -122,19 +135,28 @@ function makeLeftHalf( )
 end
 
 function launchChrome()
-	curFocus:focus()
+    fixNilCurFocus()
+    if curFocus ~= nil then
+        curFocus:focus()
+    end
     application.launchorfocus("Firefox")
     curFocus = window.focusedwindow()
 end
 
 function launchiTunes()
-	curFocus:focus()
+    fixNilCurFocus()
+    if curFocus ~= nil then
+        curFocus:focus()
+    end
     application.launchorfocus("iTunes")
     curFocus = window.focusedwindow()
 end
 
 function launchTerminal()
-	curFocus:focus()
+    fixNilCurFocus()
+    if curFocus ~= nil then
+        curFocus:focus()
+    end
     application.launchorfocus("Terminal")
     curFocus = window.focusedwindow()
 end
@@ -157,26 +179,45 @@ end
 
 local state = 0
 
+function setState(s)
+    state = s
+end
+function getState()
+    return state
+end
+
 function changeToNormalState()
-	curFocus:focus()
+    fixNilCurFocus()
+    if curFocus ~= nil then
+        curFocus:focus()
+    end
 	state = 0
 	alert.show("Default State", .75)
 end
 
 function changeToWindowsState()
-	curFocus:focus()
+    fixNilCurFocus()
+    if curFocus ~= nil then
+        curFocus:focus()
+    end
 	state = 1
 	alert.show("Windows State", .75)
 end
 
 function changeToLaunchingState()
-	curFocus:focus()
+    fixNilCurFocus()
+    if curFocus ~= nil then
+        curFocus:focus()
+    end
 	state = 2
 	alert.show("Launching State", .75)
 end
 
 function changeToWebState()
-	curFocus:focus()
+    fixNilCurFocus()
+    if curFocus ~= nil then
+        curFocus:focus()
+    end
 	state = 3
 	alert.show("Web Browsing State", .75)
 end
@@ -210,7 +251,7 @@ function ctrl0()
         print("In state LAUNCHING")
         --launchiTunes()
     elseif (state == 3) then
-    	os.execute("osascript type.scpt 'F'")
+    	os.execute("osascript type.scpt 'f'")
         print("In state Browsing")        
     else
         print("Illegal state")
@@ -232,8 +273,9 @@ function ctrl1()
         print("In state LAUNCHING")
         --nop
     elseif (state == 3) then
-    	changeToLaunchingState()
         print("In state BROWSER")
+        launchChrome()
+        os.execute("osascript openLinks.scpt")
     else
         print("Illegal state")
     end
@@ -253,9 +295,7 @@ function ctrl2()
         print("In state LAUNCHING")
     elseif (state == 3) then
         print("In state BROWSER")
-        launchChrome()
-        os.execute("osascript openLinks.scpt")
-
+        os.execute("osascript go.scpt")
     else
         print("Illegal state")
     end
@@ -273,7 +313,7 @@ function ctrl3()
     	itunes.displayCurrentTrack()
         print("In state LAUNCHING")
     elseif (state == 3) then
-        print("In state BROWSER")
+        print("type 2")
         os.execute("osascript type.scpt '2'")
         
     else
@@ -293,7 +333,7 @@ function ctrl4()
     	itunes.next()
         print("In state LAUNCHING")
     elseif (state == 3) then
-        print("In state BROWSER")
+        print("type 1")
         os.execute("osascript type.scpt '1'")       
     else
         print("Illegal state")
@@ -301,6 +341,7 @@ function ctrl4()
 end
 
 function ctrl5()
+    print("ctrl5")
     --gok
     if (state == 0) then
         print("In state NONE")
@@ -313,6 +354,7 @@ function ctrl5()
         --launchTerminal()
     elseif (state == 3) then
         print("In state BROWSER")
+        launchChrome()
         os.execute("osascript newTab.scpt")
     else
         print("Illegal state")
@@ -332,7 +374,6 @@ function ctrl6()
         print("In state LAUNCHING")
     elseif (state == 3) then
         print("In state BROWSER")
-        os.execute("osascript go.scpt")
     else
         print("Illegal state")
     end
@@ -350,7 +391,7 @@ function ctrl7()
     	launchiTunes()
         print("In state LAUNCHING")
     elseif (state == 3) then
-        print("In state BROWSER")
+        print("type 0")
         os.execute("osascript type.scpt '0'")
     else
         print("Illegal state")
@@ -369,7 +410,8 @@ function ctrl8()
     	--nop
         print("In state LAUNCHING")
     elseif (state == 3) then
-        os.execute("osascript nextTab.scpt")
+        launchChrome()
+        os.execute("osascript prevTab.scpt")
         print("In state BROWSER")
     else
         print("Illegal state")
@@ -397,54 +439,54 @@ function ctrl9()
 end
 
 
-function shift0()
-    changeFocus()
-end
-
-function shift1()
-	if (mode == 0) then
-    	makeLeftHalf()
-    else
-    	makeRightHalf()
-    end
-
-end
-
-function shift2()
-    if (mode == 0) then
-    	mode = 1
-    else
-    	mode = 0
-    end
-end
-
-function shift3()
-    minWindow()
-end
-
-function shift4()
-    unMinWindow()
-end
-
-function shift5()
-    launchChrome()
-end
-
-function shift6()
-    print ("placeholder")
-end
-
-function shift7()
-    print ("placeholder")
-end
-
-function shift8()
-    print ("placeholder")
-end
-
-function shift9()
-    print ("placeholder")
-end
+-- function shift0()
+--     changeFocus()
+-- end
+-- 
+-- function shift1()
+-- 	if (mode == 0) then
+--     	makeLeftHalf()
+--     else
+--     	makeRightHalf()
+--     end
+-- 
+-- end
+-- 
+-- function shift2()
+--     if (mode == 0) then
+--     	mode = 1
+--     else
+--     	mode = 0
+--     end
+-- end
+-- 
+-- function shift3()
+--     minWindow()
+-- end
+-- 
+-- function shift4()
+--     unMinWindow()
+-- end
+-- 
+-- function shift5()
+--     launchChrome()
+-- end
+-- 
+-- function shift6()
+--     print ("placeholder")
+-- end
+-- 
+-- function shift7()
+--     print ("placeholder")
+-- end
+-- 
+-- function shift8()
+--     print ("placeholder")
+-- end
+-- 
+-- function shift9()
+--     print ("placeholder")
+-- end
 
 
 hotkey.bind({"ctrl", "cmd"}, "q", ctrl0) -- yam
@@ -458,14 +500,14 @@ hotkey.bind({"ctrl", "cmd"}, "i", ctrl7) -- red
 hotkey.bind({"ctrl", "cmd"}, "o", ctrl8) -- doop
 hotkey.bind({"ctrl", "cmd"}, "p", ctrl9) -- back
 
-hotkey.bind({"ctrl", "shift"}, "0", shift0)
-hotkey.bind({"ctrl", "shift"}, "1", shift1)
-hotkey.bind({"ctrl", "shift"}, "2", shift2)
-hotkey.bind({"ctrl", "shift"}, "3", shift3)
-hotkey.bind({"ctrl", "shift"}, "4", shift4)
-hotkey.bind({"ctrl", "shift"}, "5", shift5)
-hotkey.bind({"ctrl", "shift"}, "6", shift6)
-hotkey.bind({"ctrl", "shift"}, "7", shift7)
-hotkey.bind({"ctrl", "shift"}, "8", shift8)
-hotkey.bind({"ctrl", "shift"}, "9", shift9)
+-- hotkey.bind({"ctrl", "shift"}, "0", shift0)
+-- hotkey.bind({"ctrl", "shift"}, "1", shift1)
+-- hotkey.bind({"ctrl", "shift"}, "2", shift2)
+-- hotkey.bind({"ctrl", "shift"}, "3", shift3)
+-- hotkey.bind({"ctrl", "shift"}, "4", shift4)
+-- hotkey.bind({"ctrl", "shift"}, "5", shift5)
+-- hotkey.bind({"ctrl", "shift"}, "6", shift6)
+-- hotkey.bind({"ctrl", "shift"}, "7", shift7)
+-- hotkey.bind({"ctrl", "shift"}, "8", shift8)
+-- hotkey.bind({"ctrl", "shift"}, "9", shift9)
 
