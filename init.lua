@@ -124,16 +124,19 @@ end
 function launchChrome()
 	curFocus:focus()
     application.launchorfocus("Firefox")
+    curFocus = window.focusedwindow()
 end
 
 function launchiTunes()
 	curFocus:focus()
     application.launchorfocus("iTunes")
+    curFocus = window.focusedwindow()
 end
 
 function launchTerminal()
 	curFocus:focus()
     application.launchorfocus("Terminal")
+    curFocus = window.focusedwindow()
 end
 
 function doCommand(comm)
