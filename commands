@@ -27,33 +27,33 @@ Normal state
 
 
 Default State:
-  yam: change to windows state
-  poke: change to launching state
-  tim: change focus
-  red: close window (not implemented)
-  doop: change to browsing state
-  back: change to default store
+  yam (q): change to windows state
+  poke (w): change to launching state
+  tim (t): change focus
+  red (i): close window (not implemented)
+  doop (o): change to browsing state
+  back (p): change to default store
 Windows State:
-  poke: change to launching state
-  sit: snap left
-  tim: minimize window
-  gok: snap right
-  doop: unminimize window
-  back: change to default store
+  poke (w): change to launching state
+  sit (r): snap left
+  tim (t): minimize window
+  gok (y): snap right
+  doop (o): unminimize window
+  back (p): change to default store
 Launching State:
-  poke: change to launching state
-  heat: launch Firefox
-  gok: launch terminal
+  poke (w): change to launching state
+  heat (e): launch Firefox
+  gok (y): launch terminal (deactivated)
   red: launch itunes
-  sit: display itunes song
-  lag: play/pause itunes
-  tim: next itunes song
-  back: change to default store
+  sit (r): display itunes song
+  lag (u): play/pause itunes
+  tim (t): next itunes song
+  back (p): change to default store
 Brwosing State:
-  yam: press f
-  poke: change to launching state
-  sit: press 2
-  tim: press 1
-  lag: press enter
-  red: press 0
-  back: change to default store
+  yam (q): press f
+  poke (w): change to launching state
+  sit (r): press 2
+  tim (t): press 1
+  lag (u): press enter
+  red (i): press 0
+  back (p): change to default store
