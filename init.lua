@@ -109,16 +109,6 @@ function launchiTunes()
     application.launchorfocus("iTunes")
 end
 
-function doCommand(comm)
-    i = math.floor(tonumber(comm))
-
-    if (i == 0) then print("got a zero. what do you want?!?!")
-    elseif (i == 1) then print ("got a one. what do you want?!?!?")
-    else print ("command not recognized")
-    end
-end
-
-
 
 mjolnir.hotkey.bind({"ctrl"}, "r", mjolnir.reload)
 hotkey.bind({"ctrl"}, "f", changeFocus)
@@ -134,17 +124,3 @@ hotkey.bind({"ctrl"}, "n", itunes.next)
 
 hotkey.bind({"cmd", "alt", "ctrl"}, "D", frameChange)
 
--- socket-y
-local socket = require("socket")
-
-local server = assert(socket.bind("*", 3456))
-
-while 1 do
-    local client = server:accept()
-    local command, err = client:receive("*l")
-
-    if not err then
-        num = tonumber(command)
-        print(command)
-    end
-end
