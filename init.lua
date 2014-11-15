@@ -6,6 +6,7 @@ local transform = require "mjolnir.sk.transform"
 mjolnir.hotkey = require "mjolnir.hotkey"
 local itunes = require "mjolnir.lb.itunes"
 local screen = require "mjolnir.screen"
+local cursor = require "mjolnir.jstevenson.cursor"
 
 
 -- move window 10 spaces
@@ -102,7 +103,7 @@ function makeLeftHalf( )
 end
 
 function launchChrome()
-    application.launchorfocus("Google Chrome")
+    application.launchorfocus("Firefox")
 end
 
 function launchiTunes()
@@ -118,33 +119,30 @@ function doCommand(comm)
     end
 end
 
+function moveMouseLeft()
+	point = cursor.position()
+	xpos = point.x + 10
+	ypos = point.y
+	cursor.warptopoint(xpos,ypos)
+end
 
 
-mjolnir.hotkey.bind({"ctrl"}, "r", mjolnir.reload)
+hotkey.bind({"ctrl"}, "r", mjolnir.reload)
 hotkey.bind({"ctrl"}, "f", changeFocus)
 hotkey.bind({"ctrl"}, "o", minWindow)
 hotkey.bind({"ctrl"}, "m", unMinWindow)
 hotkey.bind({"ctrl"}, "c", launchChrome)
-hotkey.bind({"ctrl"}, "i", launchiTunes)
 hotkey.bind({"ctrl"}, "a", makeLeftHalf)
 hotkey.bind({"ctrl"}, "s", makeRightHalf)
+
+hotkey.bind({"ctrl"}, "z", moveMouseLeft)
+
+-- itunes!
+hotkey.bind({"ctrl"}, "i", launchiTunes)
 hotkey.bind({"ctrl"}, "p", itunes.play)
 hotkey.bind({"ctrl"}, "d", itunes.displayCurrentTrack)
 hotkey.bind({"ctrl"}, "n", itunes.next)
+hotkey.bind({"ctrl"}, "b", itunes.previous)
 
 hotkey.bind({"cmd", "alt", "ctrl"}, "D", frameChange)
 
--- socket-y
-local socket = require("socket")
-
-local server = assert(socket.bind("*", 3456))
-
-while 1 do
-    local client = server:accept()
-    local command, err = client:receive("*l")
-
-    if not err then
-        num = tonumber(command)
-        print(command)
-    end
-end
