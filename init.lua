@@ -137,6 +137,8 @@ function moveMouseLeft()
 	cursor.warptopoint(xpos,ypos)
 end
 
+local state = 0
+
 function changeToNormalState()
 	state = 0
 	alert.show("Default State", .75)
@@ -163,7 +165,7 @@ end
 --]]
 
 
-local state = 0
+
 
 --[[
 -- states:
@@ -429,9 +431,9 @@ hotkey.bind({"ctrl", "cmd"}, "r", ctrl3) -- sit
 hotkey.bind({"ctrl", "cmd"}, "t", ctrl4) -- Tim
 hotkey.bind({"ctrl", "cmd"}, "y", ctrl5) -- gok
 hotkey.bind({"ctrl", "cmd"}, "u", ctrl6) -- lag
-hotkey.bind({"ctrl", "cmd"}, "u", ctrl7) -- red
-hotkey.bind({"ctrl", "cmd"}, "i", ctrl8) -- doop
-hotkey.bind({"ctrl", "cmd"}, "o", ctrl9) -- back
+hotkey.bind({"ctrl", "cmd"}, "i", ctrl7) -- red
+hotkey.bind({"ctrl", "cmd"}, "o", ctrl8) -- doop
+hotkey.bind({"ctrl", "cmd"}, "p", ctrl9) -- back
 
 hotkey.bind({"ctrl", "shift"}, "0", shift0)
 hotkey.bind({"ctrl", "shift"}, "1", shift1)
