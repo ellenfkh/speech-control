@@ -12,6 +12,7 @@ mjolnir.hotkey = require "mjolnir.hotkey"
 local itunes = require "mjolnir.lb.itunes"
 local screen = require "mjolnir.screen"
 local cursor = require "mjolnir.jstevenson.cursor"
+local alert = require "mjolnir.alert"
 
 local mode = 0
 
@@ -136,6 +137,25 @@ function moveMouseLeft()
 	cursor.warptopoint(xpos,ypos)
 end
 
+function changeToNormalState()
+	state = 0
+	alert.show("Default State", .75)
+end
+
+function changeToWindowsState()
+	state = 1
+	alert.show("Windows State", .75)
+end
+
+function changeToLaunchingState()
+	state = 2
+	alert.show("Launching State", .75)
+end
+
+function changeToWebState()
+	state = 3
+	alert.show("Web Browsing State", .75)
+end
 --[[
 -- put if/elses in these, possibly calls to other functions?  in order to do
 -- states and/or composed commands, everything should be routed through these
@@ -150,15 +170,15 @@ local state = 0
 --  0: default/none
 --  1: manipulating windows
 --  2: launching applications
---  3: scrolling
---  4: using a web browser
+--  3: using a web browser
 --]]
 
 function ctrl0()
-    --foot
+    -- yam
+    -- change to window state if in normal
     if (state == 0) then
         print("In state NONE")
-        state = 1
+        changeToWindowsState()
     elseif (state == 1) then
         print("In state WINDOWS")
     elseif (state == 2) then
