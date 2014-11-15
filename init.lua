@@ -252,10 +252,10 @@ function ctrl2()
     	launchChrome()
         print("In state LAUNCHING")
     elseif (state == 3) then
-    	--nop
         print("In state BROWSER")
         launchChrome()
         os.execute("osascript openLinks.scpt")
+
     else
         print("Illegal state")
     end
@@ -270,7 +270,7 @@ function ctrl3()
         print("In state WINDOWS")
         makeLeftHalf()
     elseif (state == 2) then
-    	--nop
+    	itunes.displayCurrentTrack()
         print("In state LAUNCHING")
     elseif (state == 3) then
         print("In state BROWSER")
@@ -290,7 +290,7 @@ function ctrl4()
         print("In state WINDOWS")
         minWindow()
     elseif (state == 2) then
-    	--nop
+    	itunes.next()
         print("In state LAUNCHING")
     elseif (state == 3) then
         print("In state BROWSER")
@@ -310,7 +310,7 @@ function ctrl5()
         makeRightHalf()
     elseif (state == 2) then
         print("In state LAUNCHING")
-        launchTerminal()
+        --launchTerminal()
     elseif (state == 3) then
     	--nop
         print("In state BROWSER")
@@ -328,7 +328,7 @@ function ctrl6()
     	--nop
         print("In state WINDOWS")
     elseif (state == 2) then
-    	--nop
+    	itunes.play()
         print("In state LAUNCHING")
     elseif (state == 3) then
         print("In state BROWSER")
@@ -347,7 +347,7 @@ function ctrl7()
     	--nop
         print("In state WINDOWS")
     elseif (state == 2) then
-    	--nop
+    	launchiTunes()
         print("In state LAUNCHING")
     elseif (state == 3) then
         print("In state BROWSER")
@@ -364,7 +364,7 @@ function ctrl8()
         changeToWebState()
     elseif (state == 1) then
         print("In state WINDOWS")
-        unminimize()
+        unMinWindow()
     elseif (state == 2) then
     	--nop
         print("In state LAUNCHING")
