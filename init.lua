@@ -1,3 +1,8 @@
+package.path = package.path .. ";/Users/silver/dev/homebrew/Cellar/luarocks/2.2.0_1/share/lua/5.2/?.lua"
+package.cpath = package.cpath .. ";/Users/silver/dev/homebrew/Cellar/luarocks/2.2.0_1/share/lua/5.2/?.so"
+package.path = package.path .. ";/Users/silver/dev/homebrew/lib/lua/5.2/?.lua"
+package.cpath = package.cpath .. ";/Users/silver/dev/homebrew/lib/lua/5.2/?.so"
+
 local application = require "mjolnir.application"
 local hotkey = require "mjolnir.hotkey"
 local window = require "mjolnir.window"
