@@ -285,6 +285,7 @@ function ctrl2()
     --heat
     if (state == 0) then
     	--nop
+        os.execute("osascript playVideo.scpt")
         print("In state NONE")
         
     elseif (state == 1) then
