@@ -1,25 +1,45 @@
 lexicon = 
   heat, poke, red, sit, yam, gawk, lag, tim, doop, back
 
-Normal state
-  Back - return to normal state
-  Tim - change focus
-  Yam - windows
-    Tim - minimize
-    Doop - unminimize
-    Gawk - snap right
-    Sit - snap left
-  Poke - launch
-    heat - firefox
-    gawk - terminal
-  Doop - type a key
-    Yam - press f
-    Red - press 0
-    Tim - press 1
-    Sit - press 2
-    Lag - press enter
-  Red - Close current thing
-  Gawk - no-op
-  Heat - no-op
-  Sit - no-op
-  Lag - no-op
+Default State:
+  yam: change to windows state
+  poke: change to launching state
+  tim: change focus
+  red: close window (not implemented)
+  doop: change to browsing state
+  back: change to default store
+Windows State:
+  poke: change to launching state
+  sit: snap left
+  tim: minimize window
+  gok: snap right
+  doop: unminimize window
+  back: change to default store
+Launching State:
+  poke: change to launching state
+  heat: launch Firefox
+  gok: launch terminal
+  red: launch itunes
+  sit: display itunes song
+  lag: play/pause itunes
+  tim: next itunes song
+  back: change to default store
+Brwosing State:
+  yam: press f
+  poke: change to launching state
+  sit: press 2
+  tim: press 1
+  lag: press enter
+  red: press 0
+  heat: go to favorite
+  back: change to default store
+
+TODO:
+    - Maximize
+    - Make sure snap left/right also unminimize stuff
+    - Follow links in firefox
+    - Get rid of terminal
+    - Tab open/close
+    - Tab left/right
+    - Possibly voice search
+    - Potentially finder navigation

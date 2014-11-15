@@ -16,6 +16,8 @@ local alert = require "mjolnir.alert"
 
 local mode = 0
 
+local curFocus = window.focusedwindow()
+
 -- move window 10 spaces
 function move10 ()
     local win = window.focusedwindow()
@@ -39,16 +41,19 @@ local wins = window.visiblewindows()
 
 -- change window focus
 function changeFocus()
+	curFocus:focus()
     head = table.remove(wins,1)
     print(head:id())
     sizey = #wins
     print(sizey)
     head:focus()
+    curFocus = head
     table.insert(wins,head)
 end
 
 -- minimize the window in focus
 function minWindow()
+	curFocus:focus()
     local win = window.focusedwindow()
     if (win == nil) then
         return
@@ -58,9 +63,14 @@ end
 
 -- unminimize a window. if you care which window, TOO FUCKING BAD
 function unMinWindow()
+	curFocus:focus()
     for i, wn in pairs(window.allwindows()) do
         if (wn:isminimized()) then
             wn:unminimize()
+
+            if (curFocus == wn) then
+            	curFocus = window.focusedwindow()
+            end
             break
         end
     end
@@ -69,6 +79,7 @@ end
 
 -- set focused window to the left half of the screen
 function makeRightHalf( )
+	curFocus:focus()
 	local win = window.focusedwindow()
 	if (win == nil) then
 		return
@@ -90,6 +101,7 @@ end
 
 -- set focused window to the right half of the screen
 function makeLeftHalf( )
+	curFocus:focus()
 	local win = window.focusedwindow()
         if (win == nil) then
             return
@@ -110,15 +122,21 @@ function makeLeftHalf( )
 end
 
 function launchChrome()
+	curFocus:focus()
     application.launchorfocus("Firefox")
+    curFocus = window.focusedwindow()
 end
 
 function launchiTunes()
+	curFocus:focus()
     application.launchorfocus("iTunes")
+    curFocus = window.focusedwindow()
 end
 
 function launchTerminal()
+	curFocus:focus()
     application.launchorfocus("Terminal")
+    curFocus = window.focusedwindow()
 end
 
 function doCommand(comm)
@@ -140,21 +158,25 @@ end
 local state = 0
 
 function changeToNormalState()
+	curFocus:focus()
 	state = 0
 	alert.show("Default State", .75)
 end
 
 function changeToWindowsState()
+	curFocus:focus()
 	state = 1
 	alert.show("Windows State", .75)
 end
 
 function changeToLaunchingState()
+	curFocus:focus()
 	state = 2
 	alert.show("Launching State", .75)
 end
 
 function changeToWebState()
+	curFocus:focus()
 	state = 3
 	alert.show("Web Browsing State", .75)
 end
@@ -230,9 +252,10 @@ function ctrl2()
     	launchChrome()
         print("In state LAUNCHING")
     elseif (state == 3) then
-    	--nop
         print("In state BROWSER")
-        --os.execute("osascript type.scpt '0'")
+        launchChrome()
+        os.execute("osascript openLinks.scpt")
+
     else
         print("Illegal state")
     end
@@ -247,7 +270,7 @@ function ctrl3()
         print("In state WINDOWS")
         makeLeftHalf()
     elseif (state == 2) then
-    	--nop
+    	itunes.displayCurrentTrack()
         print("In state LAUNCHING")
     elseif (state == 3) then
         print("In state BROWSER")
@@ -267,7 +290,7 @@ function ctrl4()
         print("In state WINDOWS")
         minWindow()
     elseif (state == 2) then
-    	--nop
+    	itunes.next()
         print("In state LAUNCHING")
     elseif (state == 3) then
         print("In state BROWSER")
@@ -305,7 +328,7 @@ function ctrl6()
     	--nop
         print("In state WINDOWS")
     elseif (state == 2) then
-    	--nop
+    	itunes.play()
         print("In state LAUNCHING")
     elseif (state == 3) then
         print("In state BROWSER")
@@ -324,7 +347,7 @@ function ctrl7()
     	--nop
         print("In state WINDOWS")
     elseif (state == 2) then
-    	--nop
+    	launchiTunes()
         print("In state LAUNCHING")
     elseif (state == 3) then
         print("In state BROWSER")
