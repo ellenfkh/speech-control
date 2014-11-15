@@ -1,3 +1,8 @@
+package.path = package.path .. ";/Users/silver/dev/homebrew/Cellar/luarocks/2.2.0_1/share/lua/5.2/?.lua"
+package.cpath = package.cpath .. ";/Users/silver/dev/homebrew/Cellar/luarocks/2.2.0_1/share/lua/5.2/?.so"
+package.path = package.path .. ";/Users/silver/dev/homebrew/lib/lua/5.2/?.lua"
+package.cpath = package.cpath .. ";/Users/silver/dev/homebrew/lib/lua/5.2/?.so"
+
 local application = require "mjolnir.application"
 local hotkey = require "mjolnir.hotkey"
 local window = require "mjolnir.window"
@@ -127,24 +132,24 @@ function moveMouseLeft()
 	cursor.warptopoint(xpos,ypos)
 end
 
-hotkey.bind({"ctrl"}, "r", mjolnir.reload)
-hotkey.bind({"ctrl"}, "f", changeFocus)
-hotkey.bind({"ctrl"}, "o", minWindow)
-hotkey.bind({"ctrl"}, "m", unMinWindow)
-hotkey.bind({"ctrl"}, "c", launchChrome)
-hotkey.bind({"ctrl"}, "a", makeLeftHalf)
-hotkey.bind({"ctrl"}, "s", makeRightHalf)
-
-hotkey.bind({"ctrl"}, "z", moveMouseLeft)
-
--- itunes!
-hotkey.bind({"ctrl"}, "i", launchiTunes)
-hotkey.bind({"ctrl"}, "p", itunes.play)
-hotkey.bind({"ctrl"}, "d", itunes.displayCurrentTrack)
-hotkey.bind({"ctrl"}, "n", itunes.next)
-hotkey.bind({"ctrl"}, "b", itunes.previous)
-
-hotkey.bind({"cmd", "alt", "ctrl"}, "D", frameChange)
+-- hotkey.bind({"ctrl"}, "r", mjolnir.reload)
+-- hotkey.bind({"ctrl"}, "f", changeFocus)
+-- hotkey.bind({"ctrl"}, "o", minWindow)
+-- hotkey.bind({"ctrl"}, "m", unMinWindow)
+-- hotkey.bind({"ctrl"}, "c", launchChrome)
+-- hotkey.bind({"ctrl"}, "a", makeLeftHalf)
+-- hotkey.bind({"ctrl"}, "s", makeRightHalf)
+-- 
+-- hotkey.bind({"ctrl"}, "z", moveMouseLeft)
+-- 
+-- -- itunes!
+-- hotkey.bind({"ctrl"}, "i", launchiTunes)
+-- hotkey.bind({"ctrl"}, "p", itunes.play)
+-- hotkey.bind({"ctrl"}, "d", itunes.displayCurrentTrack)
+-- hotkey.bind({"ctrl"}, "n", itunes.next)
+-- hotkey.bind({"ctrl"}, "b", itunes.previous)
+-- 
+-- hotkey.bind({"cmd", "alt", "ctrl"}, "D", frameChange)
 
 --[[
 -- put if/elses in these, possibly calls to other functions?  in order to do
