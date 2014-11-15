@@ -11,6 +11,7 @@ local transform = require "mjolnir.sk.transform"
 mjolnir.hotkey = require "mjolnir.hotkey"
 local itunes = require "mjolnir.lb.itunes"
 local screen = require "mjolnir.screen"
+local cursor = require "mjolnir.jstevenson.cursor"
 
 
 -- move window 10 spaces
@@ -107,25 +108,45 @@ function makeLeftHalf( )
 end
 
 function launchChrome()
-    application.launchorfocus("Google Chrome")
+    application.launchorfocus("Firefox")
 end
 
 function launchiTunes()
     application.launchorfocus("iTunes")
 end
 
+function doCommand(comm)
+    i = math.floor(tonumber(comm))
 
-mjolnir.hotkey.bind({"ctrl"}, "r", mjolnir.reload)
+    if (i == 0) then print("got a zero. what do you want?!?!")
+    elseif (i == 1) then print ("got a one. what do you want?!?!?")
+    else print ("command not recognized")
+    end
+end
+
+function moveMouseLeft()
+	point = cursor.position()
+	xpos = point.x + 10
+	ypos = point.y
+	cursor.warptopoint(xpos,ypos)
+end
+
+hotkey.bind({"ctrl"}, "r", mjolnir.reload)
 hotkey.bind({"ctrl"}, "f", changeFocus)
 hotkey.bind({"ctrl"}, "o", minWindow)
 hotkey.bind({"ctrl"}, "m", unMinWindow)
 hotkey.bind({"ctrl"}, "c", launchChrome)
-hotkey.bind({"ctrl"}, "i", launchiTunes)
 hotkey.bind({"ctrl"}, "a", makeLeftHalf)
 hotkey.bind({"ctrl"}, "s", makeRightHalf)
+
+hotkey.bind({"ctrl"}, "z", moveMouseLeft)
+
+-- itunes!
+hotkey.bind({"ctrl"}, "i", launchiTunes)
 hotkey.bind({"ctrl"}, "p", itunes.play)
 hotkey.bind({"ctrl"}, "d", itunes.displayCurrentTrack)
 hotkey.bind({"ctrl"}, "n", itunes.next)
+hotkey.bind({"ctrl"}, "b", itunes.previous)
 
 hotkey.bind({"cmd", "alt", "ctrl"}, "D", frameChange)
 
@@ -234,3 +255,4 @@ hotkey.bind({"ctrl", "shift"}, "6", shift6)
 hotkey.bind({"ctrl", "shift"}, "7", shift7)
 hotkey.bind({"ctrl", "shift"}, "8", shift8)
 hotkey.bind({"ctrl", "shift"}, "9", shift9)
+
