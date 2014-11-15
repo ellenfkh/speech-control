@@ -6,6 +6,7 @@ local fnutils = require "mjolnir.fnutils"
 local transform = require "mjolnir.sk.transform"
 mjolnir.hotkey = require "mjolnir.hotkey"
 local itunes = require "mjolnir.lb.itunes"
+local screen = require "mjolnir.screen"
 
 
 -- move window 10 spaces
@@ -59,6 +60,48 @@ function unMinWindow()
 	
 end
 
+-- set focused window to the left half of the screen
+function makeRightHalf( )
+	local win = window.focusedwindow()
+	if (win == nil) then 
+		return 
+	end
+	sc = screen.mainscreen()
+	width = sc:frame().w/2
+	height = sc:frame().h
+
+	size = win:size()
+	size.h = height
+	size.w = width
+
+	point = win:topleft()
+	point.x = width
+	point.y = 0
+	win:setsize(size)
+	win:settopleft(point)
+end
+
+-- set focused window to the right half of the screen
+function makeLeftHalf( )
+	local win = window.focusedwindow()
+	if (win == nil) then 
+		return 
+	end
+	sc = screen.mainscreen()
+	width = sc:frame().w/2
+	height = sc:frame().h
+
+	size = win:size()
+	size.h = height
+	size.w = width
+
+	point = win:topleft()
+	point.x = 0
+	point.y = 0
+	win:setsize(size)
+	win:settopleft(point)
+end
+
 function launchChrome()
 	application.launchorfocus("Google Chrome")
 end
@@ -72,11 +115,15 @@ end
 
 mjolnir.hotkey.bind({"ctrl"}, "r", mjolnir.reload)
 hotkey.bind({"ctrl"}, "f", changeFocus)
-hotkey.bind({"ctrl"}, "n", minWindow)
+hotkey.bind({"ctrl"}, "o", minWindow)
 hotkey.bind({"ctrl"}, "m", unMinWindow)
 hotkey.bind({"ctrl"}, "c", launchChrome)
 hotkey.bind({"ctrl"}, "i", launchiTunes)
-
+hotkey.bind({"ctrl"}, "a", makeLeftHalf)
+hotkey.bind({"ctrl"}, "s", makeRightHalf)
+hotkey.bind({"ctrl"}, "p", itunes.play)
+hotkey.bind({"ctrl"}, "d", itunes.displayCurrentTrack)
+hotkey.bind({"ctrl"}, "n", itunes.next)
 
 hotkey.bind({"cmd", "alt", "ctrl"}, "D", frameChange)
 
