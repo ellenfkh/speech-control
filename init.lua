@@ -137,6 +137,8 @@ function moveMouseLeft()
 	cursor.warptopoint(xpos,ypos)
 end
 
+local state = 0
+
 function changeToNormalState()
 	state = 0
 	alert.show("Default State", .75)
@@ -163,7 +165,7 @@ end
 --]]
 
 
-local state = 0
+
 
 --[[
 -- states:
