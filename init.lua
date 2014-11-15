@@ -246,16 +246,16 @@ function ctrl9()
     print ("placeholder 9")
 end
 
-hotkey.bind({"ctrl", "cmd"}, "q", ctrl0)
-hotkey.bind({"ctrl", "cmd"}, "w", ctrl1)
-hotkey.bind({"ctrl", "cmd"}, "e", ctrl2)
-hotkey.bind({"ctrl", "cmd"}, "r", ctrl3)
-hotkey.bind({"ctrl", "cmd"}, "t", ctrl4)
-hotkey.bind({"ctrl", "cmd"}, "y", ctrl5)
-hotkey.bind({"ctrl", "cmd"}, "u", ctrl6)
-hotkey.bind({"ctrl", "cmd"}, "u", ctrl7)
-hotkey.bind({"ctrl", "cmd"}, "i", ctrl8)
-hotkey.bind({"ctrl", "cmd"}, "o", ctrl9)
+hotkey.bind({"ctrl", "cmd"}, "q", ctrl0) -- foot
+hotkey.bind({"ctrl", "cmd"}, "w", ctrl1) -- poke
+hotkey.bind({"ctrl", "cmd"}, "e", ctrl2) -- tap
+hotkey.bind({"ctrl", "cmd"}, "r", ctrl3) -- sit
+hotkey.bind({"ctrl", "cmd"}, "t", ctrl4) -- bop
+hotkey.bind({"ctrl", "cmd"}, "y", ctrl5) -- gok
+hotkey.bind({"ctrl", "cmd"}, "u", ctrl6) -- cat
+hotkey.bind({"ctrl", "cmd"}, "u", ctrl7) -- pip
+hotkey.bind({"ctrl", "cmd"}, "i", ctrl8) -- doop
+hotkey.bind({"ctrl", "cmd"}, "o", ctrl9) -- back
 
 hotkey.bind({"ctrl", "shift"}, "0", shift0)
 hotkey.bind({"ctrl", "shift"}, "1", shift1)
