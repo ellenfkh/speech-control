@@ -207,55 +207,55 @@ function shift9()
 end
 
 function ctrl0()
-    print ("placeholder")
+    print ("placeholder 0")
 end
 
 function ctrl1()
-    print ("placeholder")
+    print ("placeholder 1")
 end
 
 function ctrl2()
-    print ("placeholder")
+    print ("placeholder 2")
 end
 
 function ctrl3()
-    print ("placeholder")
+    print ("placeholder 3")
 end
 
 function ctrl4()
-    print ("placeholder")
+    print ("placeholder 4")
 end
 
 function ctrl5()
-    print ("placeholder")
+    print ("placeholder 5")
 end
 
 function ctrl6()
-    print ("placeholder")
+    print ("placeholder 6")
 end
 
 function ctrl7()
-    print ("placeholder")
+    print ("placeholder 7")
 end
 
 function ctrl8()
-    print ("placeholder")
+    print ("placeholder 8")
 end
 
 function ctrl9()
-    print ("placeholder")
+    print ("placeholder 9")
 end
 
-hotkey.bind({"ctrl", "cmd"}, "0", ctrl0)
-hotkey.bind({"ctrl", "cmd"}, "1", ctrl1)
-hotkey.bind({"ctrl", "cmd"}, "2", ctrl2)
-hotkey.bind({"ctrl", "cmd"}, "3", ctrl3)
-hotkey.bind({"ctrl", "cmd"}, "4", ctrl4)
-hotkey.bind({"ctrl", "cmd"}, "5", ctrl5)
-hotkey.bind({"ctrl", "cmd"}, "6", ctrl6)
-hotkey.bind({"ctrl", "cmd"}, "7", ctrl7)
-hotkey.bind({"ctrl", "cmd"}, "8", ctrl8)
-hotkey.bind({"ctrl", "cmd"}, "9", ctrl9)
+hotkey.bind({"ctrl", "cmd"}, "q", ctrl0)
+hotkey.bind({"ctrl", "cmd"}, "w", ctrl1)
+hotkey.bind({"ctrl", "cmd"}, "e", ctrl2)
+hotkey.bind({"ctrl", "cmd"}, "r", ctrl3)
+hotkey.bind({"ctrl", "cmd"}, "t", ctrl4)
+hotkey.bind({"ctrl", "cmd"}, "y", ctrl5)
+hotkey.bind({"ctrl", "cmd"}, "u", ctrl6)
+hotkey.bind({"ctrl", "cmd"}, "u", ctrl7)
+hotkey.bind({"ctrl", "cmd"}, "i", ctrl8)
+hotkey.bind({"ctrl", "cmd"}, "o", ctrl9)
 
 hotkey.bind({"ctrl", "shift"}, "0", shift0)
 hotkey.bind({"ctrl", "shift"}, "1", shift1)
