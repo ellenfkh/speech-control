@@ -1,0 +1,46 @@
+foot
+    if state none then goto state maunipulating windows
+    if state launching then launch itunes
+    if state browser then press F
+
+poke
+    if state none noop
+    if state browser then press enter
+
+tap
+    if state none then goto state launching
+    if state manipulating windows then snapright
+    if state browser then press 0
+
+sit
+    if state none then goto state scrolling
+    if state manipulating windows then snapleft
+    if state browser then press 3
+
+bop
+    if state none then close current window
+    if state browser then press 1
+    if state scrolling then scroll up many
+
+gok
+    if state none then goto state browser
+    if state launching then launch terminal
+    if state scrolling then scroll down
+
+cat
+    if state none then noop
+    if state launching then launch firefox
+    if state scrolling then scroll up
+
+pip
+    if state none then change focus
+    if state manipulating windows then minimize
+    if state browser then press 2
+
+doop
+    if state none then noop
+    if state manipulating windows then unminimize
+    if state scrolling then scroll down many
+
+back
+    if state not none goto state none

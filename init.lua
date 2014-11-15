@@ -116,6 +116,10 @@ function launchiTunes()
     application.launchorfocus("iTunes")
 end
 
+function launchTerminal()
+    application.launchorfocus("Terminal")
+end
+
 function doCommand(comm)
     i = math.floor(tonumber(comm))
 
@@ -132,30 +136,217 @@ function moveMouseLeft()
 	cursor.warptopoint(xpos,ypos)
 end
 
--- hotkey.bind({"ctrl"}, "r", mjolnir.reload)
--- hotkey.bind({"ctrl"}, "f", changeFocus)
--- hotkey.bind({"ctrl"}, "o", minWindow)
--- hotkey.bind({"ctrl"}, "m", unMinWindow)
--- hotkey.bind({"ctrl"}, "c", launchChrome)
--- hotkey.bind({"ctrl"}, "a", makeLeftHalf)
--- hotkey.bind({"ctrl"}, "s", makeRightHalf)
--- 
--- hotkey.bind({"ctrl"}, "z", moveMouseLeft)
--- 
--- -- itunes!
--- hotkey.bind({"ctrl"}, "i", launchiTunes)
--- hotkey.bind({"ctrl"}, "p", itunes.play)
--- hotkey.bind({"ctrl"}, "d", itunes.displayCurrentTrack)
--- hotkey.bind({"ctrl"}, "n", itunes.next)
--- hotkey.bind({"ctrl"}, "b", itunes.previous)
--- 
--- hotkey.bind({"cmd", "alt", "ctrl"}, "D", frameChange)
-
 --[[
 -- put if/elses in these, possibly calls to other functions?  in order to do
 -- states and/or composed commands, everything should be routed through these
 -- functions.
 --]]
+
+
+local state = 0
+
+--[[
+-- states:
+--  0: default/none
+--  1: manipulating windows
+--  2: launching applications
+--  3: scrolling
+--  4: using a web browser
+--]]
+
+function ctrl0()
+    --foot
+    if (state == 0) then
+        print("In state NONE")
+        state = 1
+    elseif (state == 1) then
+        print("In state WINDOWS")
+    elseif (state == 2) then
+        print("In state LAUNCHING")
+        launchiTunes()
+    elseif (state == 3) then
+        print("In state SCROLLING")
+    elseif (state == 4) then
+        print("In state BROWSER")
+        os.execute("osascript type.scpt 'F'")
+    else
+        print("Illegal state")
+    end
+end
+
+function ctrl1()
+    --poke
+    if (state == 0) then
+        print("In state NONE")
+    elseif (state == 1) then
+        print("In state WINDOWS")
+    elseif (state == 2) then
+        print("In state LAUNCHING")
+    elseif (state == 3) then
+        print("In state SCROLLING")
+    elseif (state == 4) then
+        print("In state BROWSER")
+        os.execute("osascript go.scpt")
+    else
+        print("Illegal state")
+    end
+end
+
+function ctrl2()
+    --tap
+    if (state == 0) then
+        print("In state NONE")
+        state = 2
+    elseif (state == 1) then
+        print("In state WINDOWS")
+        makeLeftHalf()
+    elseif (state == 2) then
+        print("In state LAUNCHING")
+    elseif (state == 3) then
+        print("In state SCROLLING")
+    elseif (state == 4) then
+        print("In state BROWSER")
+        os.execute("osascript type.scpt '0'")
+    else
+        print("Illegal state")
+    end
+end
+
+function ctrl3()
+    --sit
+    if (state == 0) then
+        print("In state NONE")
+        state = 3
+    elseif (state == 1) then
+        print("In state WINDOWS")
+        makeRightHalf()
+    elseif (state == 2) then
+        print("In state LAUNCHING")
+    elseif (state == 3) then
+        print("In state SCROLLING")
+    elseif (state == 4) then
+        print("In state BROWSER")
+        os.execute("osascript type.scpt '3'")
+    else
+        print("Illegal state")
+    end
+end
+
+function ctrl4()
+    --bop
+    if (state == 0) then
+        print("In state NONE")
+    elseif (state == 1) then
+        print("In state WINDOWS")
+    elseif (state == 2) then
+        print("In state LAUNCHING")
+    elseif (state == 3) then
+        print("In state SCROLLING")
+    elseif (state == 4) then
+        print("In state BROWSER")
+        os.execute("osascript type.scpt '1'")
+    else
+        print("Illegal state")
+    end
+end
+
+function ctrl5()
+    --gok
+    if (state == 0) then
+        print("In state NONE")
+        state = 4
+    elseif (state == 1) then
+        print("In state WINDOWS")
+    elseif (state == 2) then
+        print("In state LAUNCHING")
+        launchTerminal()
+    elseif (state == 3) then
+        print("In state SCROLLING")
+    elseif (state == 4) then
+        print("In state BROWSER")
+    else
+        print("Illegal state")
+    end
+end
+
+function ctrl6()
+    --cat
+    if (state == 0) then
+        print("In state NONE")
+    elseif (state == 1) then
+        print("In state WINDOWS")
+    elseif (state == 2) then
+        print("In state LAUNCHING")
+        launchChrome()
+    elseif (state == 3) then
+        print("In state SCROLLING")
+    elseif (state == 4) then
+        print("In state BROWSER")
+    else
+        print("Illegal state")
+    end
+end
+
+function ctrl7()
+    --pip
+    if (state == 0) then
+        print("In state NONE")
+        changeFocus()
+    elseif (state == 1) then
+        print("In state WINDOWS")
+        minimize()
+    elseif (state == 2) then
+        print("In state LAUNCHING")
+    elseif (state == 3) then
+        print("In state SCROLLING")
+    elseif (state == 4) then
+        print("In state BROWSER")
+        os.execute("osascript type.scpt '2'")
+    else
+        print("Illegal state")
+    end
+end
+
+function ctrl8()
+    --doop
+    if (state == 0) then
+        print("In state NONE")
+    elseif (state == 1) then
+        print("In state WINDOWS")
+        unminimize()
+    elseif (state == 2) then
+        print("In state LAUNCHING")
+    elseif (state == 3) then
+        print("In state SCROLLING")
+    elseif (state == 4) then
+        print("In state BROWSER")
+    else
+        print("Illegal state")
+    end
+end
+
+function ctrl9()
+    --back
+    if (state == 0) then
+        print("In state NONE")
+    elseif (state == 1) then
+        print("In state WINDOWS")
+        state = 0
+    elseif (state == 2) then
+        print("In state LAUNCHING")
+        state = 0
+    elseif (state == 3) then
+        print("In state SCROLLING")
+        state = 0
+    elseif (state == 4) then
+        print("In state BROWSER")
+        state = 0
+    else
+        print("Illegal state")
+        state = 0
+    end
+end
+
 
 function shift0()
     changeFocus()
@@ -206,45 +397,6 @@ function shift9()
     print ("placeholder")
 end
 
-function ctrl0()
-    print ("placeholder 0")
-end
-
-function ctrl1()
-    print ("placeholder 1")
-end
-
-function ctrl2()
-    print ("placeholder 2")
-end
-
-function ctrl3()
-    print ("placeholder 3")
-end
-
-function ctrl4()
-    print ("placeholder 4")
-end
-
-function ctrl5()
-    print ("placeholder 5")
-end
-
-function ctrl6()
-    print ("placeholder 6")
-end
-
-function ctrl7()
-    print ("placeholder 7")
-end
-
-function ctrl8()
-    print ("placeholder 8")
-end
-
-function ctrl9()
-    print ("placeholder 9")
-end
 
 hotkey.bind({"ctrl", "cmd"}, "q", ctrl0) -- foot
 hotkey.bind({"ctrl", "cmd"}, "w", ctrl1) -- poke
