@@ -8,6 +8,7 @@ local itunes = require "mjolnir.lb.itunes"
 local screen = require "mjolnir.screen"
 local cursor = require "mjolnir.jstevenson.cursor"
 
+local mode = 0
 
 -- move window 10 spaces
 function move10 ()
@@ -152,27 +153,36 @@ hotkey.bind({"cmd", "alt", "ctrl"}, "D", frameChange)
 --]]
 
 function shift0()
-    print ("placeholder")
+    changeFocus()
 end
 
 function shift1()
-    print ("placeholder")
+	if (mode == 0) then
+    	makeLeftHalf()
+    else
+    	makeRightHalf()
+    end
+
 end
 
 function shift2()
-    print ("placeholder")
+    if (mode == 0) then
+    	mode = 1
+    else
+    	mode = 0
+    end
 end
 
 function shift3()
-    print ("placeholder")
+    minWindow()
 end
 
 function shift4()
-    print ("placeholder")
+    unMinWindow()
 end
 
 function shift5()
-    print ("placeholder")
+    launchChrome()
 end
 
 function shift6()
@@ -231,19 +241,21 @@ function ctrl9()
     print ("placeholder")
 end
 
-hotkey.bind({"ctrl"}, "0", ctrl1)
-hotkey.bind({"ctrl"}, "1", ctrl2)
-hotkey.bind({"ctrl"}, "2", ctrl3)
-hotkey.bind({"ctrl"}, "4", ctrl4)
-hotkey.bind({"ctrl"}, "5", ctrl5)
-hotkey.bind({"ctrl"}, "6", ctrl6)
-hotkey.bind({"ctrl"}, "7", ctrl7)
-hotkey.bind({"ctrl"}, "8", ctrl8)
-hotkey.bind({"ctrl"}, "9", ctrl9)
+hotkey.bind({"ctrl", "cmd"}, "0", ctrl0)
+hotkey.bind({"ctrl", "cmd"}, "1", ctrl1)
+hotkey.bind({"ctrl", "cmd"}, "2", ctrl2)
+hotkey.bind({"ctrl", "cmd"}, "3", ctrl3)
+hotkey.bind({"ctrl", "cmd"}, "4", ctrl4)
+hotkey.bind({"ctrl", "cmd"}, "5", ctrl5)
+hotkey.bind({"ctrl", "cmd"}, "6", ctrl6)
+hotkey.bind({"ctrl", "cmd"}, "7", ctrl7)
+hotkey.bind({"ctrl", "cmd"}, "8", ctrl8)
+hotkey.bind({"ctrl", "cmd"}, "9", ctrl9)
 
-hotkey.bind({"ctrl", "shift"}, "0", shift1)
-hotkey.bind({"ctrl", "shift"}, "1", shift2)
-hotkey.bind({"ctrl", "shift"}, "2", shift3)
+hotkey.bind({"ctrl", "shift"}, "0", shift0)
+hotkey.bind({"ctrl", "shift"}, "1", shift1)
+hotkey.bind({"ctrl", "shift"}, "2", shift2)
+hotkey.bind({"ctrl", "shift"}, "3", shift3)
 hotkey.bind({"ctrl", "shift"}, "4", shift4)
 hotkey.bind({"ctrl", "shift"}, "5", shift5)
 hotkey.bind({"ctrl", "shift"}, "6", shift6)
