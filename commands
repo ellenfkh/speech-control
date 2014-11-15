@@ -1,31 +1,6 @@
 lexicon = 
   heat, poke, red, sit, yam, gawk, lag, tim, doop, back
 
-Normal state
-  Back - return to normal state
-  Tim - change focus
-  Yam - windows
-    Tim - minimize
-    Doop - unminimize
-    Gawk - snap right
-    Sit - snap left
-  Poke - launch
-    heat - firefox
-    gawk - terminal
-  Doop - type a key
-    Yam - press f
-    Red - press 0
-    Tim - press 1
-    Sit - press 2
-    Lag - press enter
-    Heat - open interesting links
-  Red - Close current thing
-  Gawk - no-op
-  Heat - no-op
-  Sit - no-op
-  Lag - no-op
-
-
 Default State:
   yam (q): change to windows state
   poke (w): change to launching state
@@ -56,4 +31,18 @@ Brwosing State:
   tim (t): press 1
   lag (u): press enter
   red (i): press 0
-  back (p): change to default store
+  heat: go to favorite
+  back (p): change to default storer
+  
+
+
+TODO:
+    - Maximize
+    - Make sure snap left/right also unminimize stuff
+    - Follow links in firefox
+    - Get rid of terminal
+    - Tab open/close
+    - Tab left/right
+    - Possibly voice search
+    - Potentially finder navigation
+
