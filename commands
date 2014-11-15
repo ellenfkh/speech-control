@@ -44,6 +44,10 @@ Launching State:
   poke: change to launching state
   heat: launch Firefox
   gok: launch terminal
+  red: launch itunes
+  sit: display itunes song
+  lag: play/pause itunes
+  tim: next itunes song
   back: change to default store
 Brwosing State:
   yam: press f
