@@ -63,8 +63,8 @@ end
 -- set focused window to the left half of the screen
 function makeRightHalf( )
 	local win = window.focusedwindow()
-	if (win == nil) then 
-		return 
+	if (win == nil) then
+		return
 	end
 	sc = screen.mainscreen()
 	width = sc:frame().w/2
@@ -84,8 +84,8 @@ end
 -- set focused window to the right half of the screen
 function makeLeftHalf( )
 	local win = window.focusedwindow()
-	if (win == nil) then 
-		return 
+        if (win == nil) then
+            return
 	end
 	sc = screen.mainscreen()
 	width = sc:frame().w/2
@@ -110,6 +110,7 @@ function launchiTunes()
     application.launchorfocus("iTunes")
 end
 
+<<<<<<< HEAD
 function doCommand(comm)
     i = math.floor(tonumber(comm))
 
@@ -126,6 +127,8 @@ function moveMouseLeft()
 	cursor.warptopoint(xpos,ypos)
 end
 
+=======
+>>>>>>> 278ad35c2c468c23fc77acf5c2ea4fe64b2d51d4
 
 hotkey.bind({"ctrl"}, "r", mjolnir.reload)
 hotkey.bind({"ctrl"}, "f", changeFocus)
@@ -146,3 +149,111 @@ hotkey.bind({"ctrl"}, "b", itunes.previous)
 
 hotkey.bind({"cmd", "alt", "ctrl"}, "D", frameChange)
 
+<<<<<<< HEAD
+=======
+--[[
+-- put if/elses in these, possibly calls to other functions?  in order to do
+-- states and/or composed commands, everything should be routed through these
+-- functions.
+--]]
+
+function shift0()
+    print ("placeholder")
+end
+
+function shift1()
+    print ("placeholder")
+end
+
+function shift2()
+    print ("placeholder")
+end
+
+function shift3()
+    print ("placeholder")
+end
+
+function shift4()
+    print ("placeholder")
+end
+
+function shift5()
+    print ("placeholder")
+end
+
+function shift6()
+    print ("placeholder")
+end
+
+function shift7()
+    print ("placeholder")
+end
+
+function shift8()
+    print ("placeholder")
+end
+
+function shift9()
+    print ("placeholder")
+end
+
+function ctrl0()
+    print ("placeholder")
+end
+
+function ctrl1()
+    print ("placeholder")
+end
+
+function ctrl2()
+    print ("placeholder")
+end
+
+function ctrl3()
+    print ("placeholder")
+end
+
+function ctrl4()
+    print ("placeholder")
+end
+
+function ctrl5()
+    print ("placeholder")
+end
+
+function ctrl6()
+    print ("placeholder")
+end
+
+function ctrl7()
+    print ("placeholder")
+end
+
+function ctrl8()
+    print ("placeholder")
+end
+
+function ctrl9()
+    print ("placeholder")
+end
+
+hotkey.bind({"ctrl"}, "0", ctrl1)
+hotkey.bind({"ctrl"}, "1", ctrl2)
+hotkey.bind({"ctrl"}, "2", ctrl3)
+hotkey.bind({"ctrl"}, "4", ctrl4)
+hotkey.bind({"ctrl"}, "5", ctrl5)
+hotkey.bind({"ctrl"}, "6", ctrl6)
+hotkey.bind({"ctrl"}, "7", ctrl7)
+hotkey.bind({"ctrl"}, "8", ctrl8)
+hotkey.bind({"ctrl"}, "9", ctrl9)
+
+hotkey.bind({"ctrl", "shift"}, "0", shift1)
+hotkey.bind({"ctrl", "shift"}, "1", shift2)
+hotkey.bind({"ctrl", "shift"}, "2", shift3)
+hotkey.bind({"ctrl", "shift"}, "4", shift4)
+hotkey.bind({"ctrl", "shift"}, "5", shift5)
+hotkey.bind({"ctrl", "shift"}, "6", shift6)
+hotkey.bind({"ctrl", "shift"}, "7", shift7)
+hotkey.bind({"ctrl", "shift"}, "8", shift8)
+hotkey.bind({"ctrl", "shift"}, "9", shift9)
+>>>>>>> 278ad35c2c468c23fc77acf5c2ea4fe64b2d51d4
