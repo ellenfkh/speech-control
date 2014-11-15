@@ -23,3 +23,32 @@ Normal state
   Heat - no-op
   Sit - no-op
   Lag - no-op
+
+
+Default State:
+  yam: change to windows state
+  poke: change to launching state
+  tim: change focus
+  red: close window (not implemented)
+  doop: change to browsing state
+  back: change to default store
+Windows State:
+  poke: change to launching state
+  sit: snap left
+  tim: minimize window
+  gok: snap right
+  doop: unminimize window
+  back: change to default store
+Launching State:
+  poke: change to launching state
+  heat: launch Firefox
+  gok: launch terminal
+  back: change to default store
+Brwosing State:
+  yam: press f
+  poke: change to launching state
+  sit: press 2
+  tim: press 1
+  lag: press enter
+  red: press 0
+  back: change to default store

@@ -254,7 +254,6 @@ function ctrl2()
     elseif (state == 3) then
     	--nop
         print("In state BROWSER")
-        --os.execute("osascript type.scpt '0'")
     else
         print("Illegal state")
     end
